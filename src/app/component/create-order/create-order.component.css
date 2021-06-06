@@ -1,0 +1,16 @@
+.Back-button {
+    position: absolute;
+    right: 55px;
+    top: 340px;
+}
+
+a{
+    position: absolute;
+    right: 55px;
+    top: 295px;
+}
+
+.button_move{
+    position:fixed;
+    left: 30%;
+}

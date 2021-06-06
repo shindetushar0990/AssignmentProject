@@ -1,0 +1,47 @@
+.header {
+    background-color: #a3acb8;
+    color:black;
+    text-align: center;
+    height: 70px;
+    padding: 10px;
+    font-weight: 'bold';
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    z-index: 10;
+}
+
+.menu {
+    background-color: #008a74;
+    color:black;
+    font-weight: 'bold';
+    position: fixed;
+    height: 35px;
+    top: 70px;
+    right: 0px;
+    left: 0px;
+    padding: 0px;
+    z-index: 10;
+}
+
+.footer {
+    background-color: #024a3f;
+    color:black;
+    position: fixed;
+    height: 30px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    text-align: center;
+    padding: 10px;
+}
+
+.body {
+    background-color: #9b9292;
+    padding: 10px;
+    position: absolute;
+    top: 120px;
+    right: 0px;
+    left: 0px;
+}

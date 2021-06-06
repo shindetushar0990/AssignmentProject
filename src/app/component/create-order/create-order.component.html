@@ -1,0 +1,112 @@
+<div style="font-size: 20px;">
+    <h1>Create a Order</h1>
+    <hr>
+</div>
+<br>
+<!-- <div>
+    <button class="Back-button" mat-raised-button color='accent'>Remove</button>
+</div> -->
+
+<form [formGroup]="orderForm">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field>
+                <input matInput placeholder="Order No" formControlName="orderNo">
+            </mat-form-field>
+            <span
+                *ngIf="orderForm.controls['orderNo'].invalid && (orderForm.controls['orderNo'].dirty || orderForm.controls['orderNo'].touched)">
+                <span *ngIf="orderForm.controls['orderNo'].errors.required" style="color: red;">order No is
+                    Required</span>
+                <span *ngIf="orderForm.controls['orderNo'].errors.pattern" style="color: red;">Please provide numbers
+                    only</span>
+            </span>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker"  [min]="minDate" formControlName="purchaseDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <span
+            *ngIf="orderForm.controls['purchaseDate'].invalid && (orderForm.controls['purchaseDate'].dirty || orderForm.controls['purchaseDate'].touched)">
+            <span *ngIf="orderForm.controls['purchaseDate'].errors.required" style="color: red;">purchaseDate is
+                Required</span>
+        </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field>
+                <input matInput placeholder="Customer Name" formControlName="customerName">
+            </mat-form-field>
+            <span
+                *ngIf="orderForm.controls['customerName'].invalid && (orderForm.controls['customerName'].dirty || orderForm.controls['customerName'].touched)">
+                <span *ngIf="orderForm.controls['customerName'].errors.required" style="color: red;">customerName is
+                    Required</span>
+                <span *ngIf="orderForm.controls['customerName'].errors.pattern" style="color: red;">Please provide valid
+                    only</span>
+            </span>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field>
+                <input matInput placeholder="Total Amount" formControlName="totalAmount">
+            </mat-form-field>
+            <span
+                *ngIf="orderForm.controls['totalAmount'].invalid && (orderForm.controls['totalAmount'].dirty || orderForm.controls['totalAmount'].touched)">
+                <span *ngIf="orderForm.controls['totalAmount'].errors.required" style="color: red;">totalAmount is
+                    Required</span>
+                <span *ngIf="orderForm.controls['totalAmount'].errors.pattern" style="color: red;">Please provide numbers
+                    only</span>
+            </span>
+        </div>
+    </div>
+    <br>
+    <div style="font-size: 20px;">
+        <h1>Add Items</h1>
+        <hr>
+        <br>
+        <a href="javascript: void(0);" (click)="AddItems()">Add Other</a>
+
+    </div>
+    <br>
+    <div formArrayName="items">
+        <div *ngFor="let item of items.controls; let i=index" [formGroupName]="i">
+            <div class="row">
+                <div class="col-md-2">
+                    <mat-form-field>
+                        <input matInput placeholder="Item Name" formControlName="itemName">
+                    </mat-form-field>
+                    
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field>
+                        <input matInput placeholder="Item Quantity" formControlName="itemQuantity">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field>
+                        <input matInput placeholder="Unit Price" formControlName="itemUnitprice"
+                            (blur)="calculateTotalPrice(i)">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field>
+                        <input matInput placeholder="Total Price" formControlName="TotalPrice" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <button (click)="deleteItems()" mat-raised-button color='warn'>Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-md-6">
+        <div class="col-md-3">
+            <button mat-raised-button color='primary' [disabled]="orderForm.invalid" (click)="saveItem(orderForm)">SAVE</button>
+        </div>
+        <div class="col-md-3">
+            <button mat-raised-button color='accent' (click)="resetItem()">RESET</button>
+        </div>
+    </div>
+</form>
